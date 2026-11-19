@@ -46,3 +46,13 @@ dist/
 *.wlf
 *.fsdb
 *.vpd
+
+# --- PolarFire-VibMonitor: regenerable artefacts ---
+# feature datasets built by build_data.py (about 6 min to rebuild); the small quantised model
+# data/qmodel_int8.npz IS tracked because rtl/gen_vectors.py uses it
+data/train.npz
+data/test_*.npz
+# Icarus Verilog output
+rtl/sim
+rtl/sim.vvp
+*.vcd

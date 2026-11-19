@@ -1,6 +1,6 @@
 // Self-checking testbench. Run from the rtl/ directory (vectors/ is read relative to cwd).
 //   python3 gen_vectors.py
-//   iverilog -g2005 -o sim approx_mul.v mac_array.v tb_mac_array.v && vvp sim
+//   iverilog -g2005 -o sim.vvp approx_mul.v mac_array.v tb_mac_array.v && vvp sim.vvp     (or: ./run_sim.sh)
 // 1) exhaustive 255x255 multiplier check for exact / trunc4 / trunc6 / drum4 / drum3
 // 2) dot-product (mac_array, 8 lanes, 64 elements) trials for exact / trunc4 / drum4
 `timescale 1ns/1ps

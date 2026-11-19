@@ -1,0 +1,55 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  model:
+    name: Python model tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: pip install -r requirements.txt
+      - name: Unit tests (generator, features, MLP/quantisation, multipliers, golden vectors)
+        run: python -m unittest discover -s tests -v
+
+  vectors-stdlib:
+    name: Golden vectors vs RTL semantics (stdlib only)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      # no numpy on purpose: this test must keep working without any dependency
+      - run: python -m unittest tests.test_rtl_vectors -v
+
+  rtl:
+    name: RTL simulation (Icarus Verilog)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: pip install numpy
+      - run: sudo apt-get update && sudo apt-get install -y --no-install-recommends iverilog
+      - name: Regenerate vectors and run the self-checking testbench
+        run: rtl/run_sim.sh
+      - name: Committed golden vectors match the Python model
+        run: git diff --exit-code -- rtl/vectors

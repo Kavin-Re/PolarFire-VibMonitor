@@ -1,0 +1,55 @@
+name: Bug report
+description: Report something that is not working
+labels:
+- bug
+body:
+- type: textarea
+  id: what
+  attributes:
+    label: What happened?
+    description: Describe the bug and what you expected instead.
+  validations:
+    required: true
+- type: textarea
+  id: steps
+  attributes:
+    label: Steps to reproduce
+    description: Numbered steps, as exact as possible.
+  validations:
+    required: true
+- type: input
+  id: env
+  attributes:
+    label: Operating system and Python version
+    description: e.g. Ubuntu 24.04, Python 3.12.3 (`python3 --version`).
+  validations:
+    required: true
+- type: input
+  id: numpy
+  attributes:
+    label: numpy / matplotlib versions
+    description: '`pip list | grep -iE ''numpy|matplotlib''`.'
+  validations:
+    required: false
+- type: input
+  id: tools
+  attributes:
+    label: Simulator / tool versions
+    description: Output of `iverilog -V | head -1`, `yosys -V`, `verilator --version` (whichever you used) (only for RTL issues).
+  validations:
+    required: true
+- type: input
+  id: commit
+  attributes:
+    label: Commit
+    description: Output of `git rev-parse --short HEAD`.
+  validations:
+    required: true
+- type: textarea
+  id: logs
+  attributes:
+    label: Logs or output
+    description: Paste relevant output. It will be formatted as code. Remove personal data first.
+    render: shell
+  validations:
+    required: false
