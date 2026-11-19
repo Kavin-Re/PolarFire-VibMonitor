@@ -1,0 +1,3 @@
+multiplier section: 325125 checks, 0 errors so far
+TB PASS: 325161 checks, 0 errors
+tb_mac_array.v:79: $finish called at 72960000 (1ps)
