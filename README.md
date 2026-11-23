@@ -1,5 +1,9 @@
 # PolarFire-VibMonitor
 
+> **Archived 2026-11-23.** Why: the name promises FPGA work that was never done. Nothing here was
+> synthesised for, placed on or measured on a PolarFire device; it is a software model on synthetic data with
+> a small simulated RTL block. This repository is not maintained, and the roadmap below is not scheduled.
+
 [![CI](https://github.com/Kavin-Re/PolarFire-VibMonitor/actions/workflows/ci.yml/badge.svg)](https://github.com/Kavin-Re/PolarFire-VibMonitor/actions/workflows/ci.yml)
 ![status](https://img.shields.io/badge/status-software%20model%20%2B%20RTL%20skeleton-orange)
 ![data](https://img.shields.io/badge/data-synthetic%20only-lightgrey)
@@ -175,5 +179,4 @@ tests/               unittest suites
 
 ## License
 
-No license file has been added yet, so default copyright applies. Add one (MIT or Apache-2.0 are common for
-research code) if you want others to reuse this.
+Copyright 2026 Kavin K K. Licensed under the [Apache License, Version 2.0](LICENSE); see also [NOTICE](NOTICE).
